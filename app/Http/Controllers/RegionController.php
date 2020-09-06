@@ -14,7 +14,11 @@ class RegionController extends Controller
      */
     public function index()
     {
-        //
+        $region = Region::get();
+
+        return view('regions.index', [
+            'regions' => $region,
+        ]);
     }
 
     /**
@@ -24,7 +28,8 @@ class RegionController extends Controller
      */
     public function create()
     {
-        //
+        
+        return view('regions.create');
     }
 
     /**
@@ -35,7 +40,12 @@ class RegionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $region = new Region();
+        $region->name = $request->name;
+
+        $region->save();
+
+        return redirect()->action('RegionController@index'); 
     }
 
     /**
@@ -55,9 +65,11 @@ class RegionController extends Controller
      * @param  \App\Region  $region
      * @return \Illuminate\Http\Response
      */
-    public function edit(Region $region)
+    public function edit( $id)
     {
-        //
+        $region = Region::find($id);
+        //echo "Task Name ".$task->name;
+        return view('regions.edit',['regions'=>Region::get(),'region'=>$region]);
     }
 
     /**
@@ -67,9 +79,14 @@ class RegionController extends Controller
      * @param  \App\Region  $region
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Region $region)
+    public function update(Request $request, $id)
     {
-        //
+        $t = Region::find($id);
+        $t->name = $request->name;
+        
+        $t->save();
+       
+        return redirect('regions');
     }
 
     /**
@@ -78,8 +95,9 @@ class RegionController extends Controller
      * @param  \App\Region  $region
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Region $region)
+    public function destroy($id)
     {
-        //
+        Region::findOrFail($id)->delete();
+        return redirect('regions');
     }
 }

@@ -37,6 +37,7 @@
     @enderror
     </div>
     <div class="form-group">
+    <label for="township_id">Township Name</label>
     <select name="township_id" id="township_id" class="form-control">
      @foreach($townships as $township)
        <option value="{{$township->id}}">{{$township->Name}}</option>
@@ -44,6 +45,7 @@
     </select>
     </div>
     <div class="form-group">
+    <label for="servicecategory_id">ServiceCategory Name</label>
     <select name="servicecategory_id" id="servicecategory_id" class="form-control">
      @foreach($servicecategories as $servicecategory)
        <option value="{{$servicecategory->id}}">{{$servicecategory->Name}}</option>

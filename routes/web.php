@@ -33,3 +33,4 @@ Route::resource('/townships','TownshipController');
 Route::resource('/service_categories','ServiceCategoryController');
 Route::resource('/service_items','ServiceItemController');
 Route::resource('/bookings','BookingController');
+Route::resource('/shops','ShopController');

@@ -30,13 +30,10 @@ class ServiceItemController extends Controller
      */
     public function create()
     {
-<<<<<<< HEAD
         //
         
-=======
         $service_categories=ServiceCategory::get();
         return view('service_items.create',['service_categories'=>$service_categories]);
->>>>>>> master
     }
 
     /**

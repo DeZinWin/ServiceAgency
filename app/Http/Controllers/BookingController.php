@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Booking;
+use App\Shop;
+use App\ServiceItem;
 use Illuminate\Http\Request;
 
 class BookingController extends Controller
@@ -14,7 +16,13 @@ class BookingController extends Controller
      */
     public function index()
     {
-        //
+        $shop = Shop::get();
+        $service_item    = ServiceItem::get();
+        $bookings =Booking::get();
+
+        return view('bookings.index', [
+            'shops' => $shop,'service_items'=>$service_item,'bookings'=>$bookings,
+        ]);
     }
 
     /**
@@ -24,7 +32,9 @@ class BookingController extends Controller
      */
     public function create()
     {
-        //
+        $shop=Shop::get();
+        $service_item=ServiceItem::get();
+        return view('bookings.create',['shops'=>$shop,'service_items'=>$service_item]);
     }
 
     /**

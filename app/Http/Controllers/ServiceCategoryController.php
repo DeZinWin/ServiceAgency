@@ -14,7 +14,11 @@ class ServiceCategoryController extends Controller
      */
     public function index()
     {
-        //
+        $service_categories = ServiceCategory::get();
+
+        return view('service_categories.index', [
+            'service_categories' => $service_categories,
+        ]);
     }
 
     /**
@@ -24,7 +28,9 @@ class ServiceCategoryController extends Controller
      */
     public function create()
     {
-        //
+        $service_categories=ServiceCategory::get();
+        return view('service_categories.create',['service_categories'=>$service_categories
+        ]);
     }
 
     /**
@@ -35,7 +41,13 @@ class ServiceCategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $service_categories = new ServiceCategory();
+        $service_categories->Name = $request->name;
+        $service_categories->Description = $request->description;
+
+        $service_categories->save();
+
+        return redirect()->action('ServiceCategoryController@index'); 
     }
 
     /**
@@ -55,9 +67,11 @@ class ServiceCategoryController extends Controller
      * @param  \App\ServiceCategory  $serviceCategory
      * @return \Illuminate\Http\Response
      */
-    public function edit(ServiceCategory $serviceCategory)
+    public function edit($id)
     {
-        //
+        $service_categories = ServiceCategory::find($id);
+        //echo "Task Name ".$task->name;
+        return view('service_categories.edit',['service_categories'=>ServiceCategory::get(),'service_category'=>$service_categories]);
     }
 
     /**
@@ -67,9 +81,14 @@ class ServiceCategoryController extends Controller
      * @param  \App\ServiceCategory  $serviceCategory
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ServiceCategory $serviceCategory)
+    public function update(Request $request, $id)
     {
-        //
+        $t = ServiceCategory::find($id);
+        $t->Name = $request->name;
+        $t->Description = $request->description;
+        $t->save();
+       
+        return redirect('service_categories');
     }
 
     /**
@@ -78,8 +97,9 @@ class ServiceCategoryController extends Controller
      * @param  \App\ServiceCategory  $serviceCategory
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ServiceCategory $serviceCategory)
+    public function destroy($id)
     {
-        //
+        ServiceCategory::findOrFail($id)->delete();
+        return redirect('service_categories');
     }
 }

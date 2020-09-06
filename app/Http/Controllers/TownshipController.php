@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Township;
+use App\Region;
 use Illuminate\Http\Request;
 
 class TownshipController extends Controller
@@ -12,9 +13,15 @@ class TownshipController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    
     public function index()
     {
-        //
+        $region = Region::get();
+        $township    = Township::get();
+
+        return view('townships.index', [
+            'regions' => $region,'townships'=>$township
+        ]);
     }
 
     /**
@@ -24,7 +31,8 @@ class TownshipController extends Controller
      */
     public function create()
     {
-        //
+        $region=Region::get();
+        return view('townships.create',['regions'=>$region]);
     }
 
     /**
@@ -35,7 +43,13 @@ class TownshipController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $township = new Township();
+        $township->name = $request->name;
+        $township->region_id=$request->region_id;
+
+        $township->save();
+
+        return redirect()->action('TownshipController@index'); 
     }
 
     /**
@@ -55,9 +69,11 @@ class TownshipController extends Controller
      * @param  \App\Township  $township
      * @return \Illuminate\Http\Response
      */
-    public function edit(Township $township)
+    public function edit($id)
     {
-        //
+        $township = Township::find($id);
+        //echo "Task Name ".$task->name;
+        return view('townships.edit',['townships'=>Township::get(),'township'=>$township]);
     }
 
     /**
@@ -67,9 +83,14 @@ class TownshipController extends Controller
      * @param  \App\Township  $township
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Township $township)
+    public function update(Request $request, $id)
     {
-        //
+        $t = Township::find($id);
+        $t->name = $request->name;
+        
+        $t->save();
+       
+        return redirect('townships');
     }
 
     /**
@@ -78,8 +99,9 @@ class TownshipController extends Controller
      * @param  \App\Township  $township
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Township $township)
+    public function destroy($id)
     {
-        //
+        Township::findOrFail($id)->delete();
+        return redirect('townships');
     }
 }

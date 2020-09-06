@@ -8,23 +8,16 @@
       
         
 
-          <form action="{{ route('service_categories.update', $service_category->id) }}" method="POST" class="form-horizontal">
+          <form action="{{ route('regions.update', $region->id) }}" method="POST" class="form-horizontal">
             {{ csrf_field() }}
             <input name="_method" type="hidden" value="PATCH">
-            <input type="hidden" name="id" value="{{$service_category->id}}" />
+            <input type="hidden" name="id" value="{{$region->id}}" />
             <!-- Task Name -->
             <div class="form-group">
                 <label for="task" class="col-sm-3 control-label">Name</label>
 
                 <div class="col-sm-6">
-                    <input type="text" name="name" id="task-name" class="form-control" value="{{$service_category->Name}}" >
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="task" class="col-sm-3 control-label">Description</label>
-
-                <div class="col-sm-6">
-                    <input type="text" name="description" id="task-name" class="form-control" value="{{$service_category->Description}}" >
+                    <input type="text" name="name" id="task-name" class="form-control" value="{{$region->Name}}" >
                 </div>
             </div>
            

@@ -23,4 +23,14 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('/ui', function () {
+    return view('layouts.ui');
+});
+
+
+Route::resource('/regions','RegionController');
+Route::resource('/townships','TownshipController');
+Route::resource('/service_categories','ServiceCategoryController');
+Route::resource('/service_items','ServiceItemController');
+Route::resource('/bookings','BookingController');
 Route::resource('/shops','ShopController');

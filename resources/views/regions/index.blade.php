@@ -1,14 +1,14 @@
 @extends('layouts.master')
-@section('title','service_categories')
+@section('title','Index')
 @section('content')
  
  <br><br>
-    <a href="service_categories/create">Create New Service Categories</a>
+    <a href="regions/create">Create New Region</a>
     <br><br>
    
         <div class="panel panel-default">
             <div class="panel-heading">
-            Service categories
+                Region
             </div>
             <br>
 
@@ -18,7 +18,6 @@
                     <!-- Table Headings -->
                     <thead>
                         <th>Name</th>
-                        <th>Description</th>
                         <th>Delete
                         </th>
                         <th>Edit
@@ -27,25 +26,18 @@
 
                     <!-- Table Body -->
                     <tbody>
-                        @foreach ($service_categories as $service_category)
+                        @foreach ($regions as $region)
                             <tr>
                                 <!-- Task Name -->
                                 <td class="table-text">
 
-                                    <div>{{ $service_category->Name }}</div>
+                                    <div>{{ $region->Name }}</div>
 
                                 </td>
-
-
-                                <td class="table-text">
-
-                               <div>{{ $service_category->Description }}</div>
-
-                              </td>
                                
                                  <!-- Delete Button -->
                                 <td>
-                                <form action="/service_categories/{{ $service_category->id }}" method="POST">
+                                <form action="/regions/{{ $region->id }}" method="POST">
                                         {{ csrf_field() }}
                                         {{ method_field('DELETE') }}
 
@@ -53,7 +45,7 @@
                                     </form>
                                 </td>
                                 <td>
-                                <a href="{{ route('service_categories.edit',$service_category->id)}}" class="btn btn-primary">Edit</a>
+                                <a href="{{ route('regions.edit',$region->id)}}" class="btn btn-primary">Edit</a>
                                     
                                 </td>
                             </tr>

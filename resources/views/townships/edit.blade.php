@@ -3,28 +3,21 @@
 @section('content')
 
    
-
+<br><br>
     <div class="panel-body">
       
         
 
-          <form action="{{ route('service_categories.update', $service_category->id) }}" method="POST" class="form-horizontal">
+          <form action="{{ route('townships.update', $township->id) }}" method="POST" class="form-horizontal">
             {{ csrf_field() }}
             <input name="_method" type="hidden" value="PATCH">
-            <input type="hidden" name="id" value="{{$service_category->id}}" />
+            <input type="hidden" name="id" value="{{$township->id}}" />
             <!-- Task Name -->
             <div class="form-group">
                 <label for="task" class="col-sm-3 control-label">Name</label>
 
                 <div class="col-sm-6">
-                    <input type="text" name="name" id="task-name" class="form-control" value="{{$service_category->Name}}" >
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="task" class="col-sm-3 control-label">Description</label>
-
-                <div class="col-sm-6">
-                    <input type="text" name="description" id="task-name" class="form-control" value="{{$service_category->Description}}" >
+                    <input type="text" name="name" id="task-name" class="form-control" value="{{$township->Name}}" >
                 </div>
             </div>
            

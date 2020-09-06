@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\ServiceItem;
+use App\ServiceCategory;
 use Illuminate\Http\Request;
 
 class ServiceItemController extends Controller
@@ -14,7 +15,12 @@ class ServiceItemController extends Controller
      */
     public function index()
     {
-        //
+        $service_categories = ServiceCategory::get();
+        $service_item    = ServiceItem::get();
+
+        return view('service_items.index', [
+            'service_categories' => $service_categories,'service_items'=>$service_item
+        ]);
     }
 
     /**
@@ -24,8 +30,13 @@ class ServiceItemController extends Controller
      */
     public function create()
     {
+<<<<<<< HEAD
         //
         
+=======
+        $service_categories=ServiceCategory::get();
+        return view('service_items.create',['service_categories'=>$service_categories]);
+>>>>>>> master
     }
 
     /**
@@ -36,7 +47,13 @@ class ServiceItemController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $service_item = new ServiceItem();
+        $service_item->Name = $request->name;
+        $service_item->service_category_id=$request->service_category_id;
+
+        $service_item->save();
+
+        return redirect()->action('ServiceItemController@index'); 
     }
 
     /**
@@ -56,9 +73,11 @@ class ServiceItemController extends Controller
      * @param  \App\ServiceItem  $serviceItem
      * @return \Illuminate\Http\Response
      */
-    public function edit(ServiceItem $serviceItem)
+    public function edit($id)
     {
-        //
+        $service_item = ServiceItem::find($id);
+        //echo "Task Name ".$task->name;
+        return view('service_items.edit',['service_items'=>ServiceItem::get(),'service_item'=>$service_item]);
     }
 
     /**
@@ -68,9 +87,14 @@ class ServiceItemController extends Controller
      * @param  \App\ServiceItem  $serviceItem
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ServiceItem $serviceItem)
+    public function update(Request $request, $id)
     {
-        //
+        $t = ServiceItem::find($id);
+        $t->Name = $request->name;
+        
+        $t->save();
+       
+        return redirect('service_items');
     }
 
     /**
@@ -79,8 +103,9 @@ class ServiceItemController extends Controller
      * @param  \App\ServiceItem  $serviceItem
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ServiceItem $serviceItem)
+    public function destroy($id)
     {
-        //
+        ServiceItem::findOrFail($id)->delete();
+        return redirect('service_items');
     }
 }

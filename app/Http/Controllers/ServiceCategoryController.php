@@ -15,6 +15,7 @@ class ServiceCategoryController extends Controller
     public function index()
     {
         //
+        
     }
 
     /**
@@ -25,6 +26,7 @@ class ServiceCategoryController extends Controller
     public function create()
     {
         //
+        
     }
 
     /**
@@ -36,6 +38,9 @@ class ServiceCategoryController extends Controller
     public function store(Request $request)
     {
         //
+        
+
+
     }
 
     /**

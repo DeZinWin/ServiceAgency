@@ -14,11 +14,16 @@ class ServiceCategoryController extends Controller
      */
     public function index()
     {
+<<<<<<< HEAD
+        //
+        
+=======
         $service_categories = ServiceCategory::get();
 
         return view('service_categories.index', [
             'service_categories' => $service_categories,
         ]);
+>>>>>>> master
     }
 
     /**
@@ -28,9 +33,14 @@ class ServiceCategoryController extends Controller
      */
     public function create()
     {
+<<<<<<< HEAD
+        //
+        
+=======
         $service_categories=ServiceCategory::get();
         return view('service_categories.create',['service_categories'=>$service_categories
         ]);
+>>>>>>> master
     }
 
     /**
@@ -41,6 +51,12 @@ class ServiceCategoryController extends Controller
      */
     public function store(Request $request)
     {
+<<<<<<< HEAD
+        //
+        
+
+
+=======
         $service_categories = new ServiceCategory();
         $service_categories->Name = $request->name;
         $service_categories->Description = $request->description;
@@ -48,6 +64,7 @@ class ServiceCategoryController extends Controller
         $service_categories->save();
 
         return redirect()->action('ServiceCategoryController@index'); 
+>>>>>>> master
     }
 
     /**

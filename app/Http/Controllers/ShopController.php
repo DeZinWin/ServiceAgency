@@ -141,7 +141,7 @@ class ShopController extends Controller
                 $sh->township_id=$request->township_id;
                 $sh->service_category_id=$request->servicecategory_id;
                 $sh->OpeningTime=$request->openingtime;
-                $sh->ClosingTme=$request->closingtime;
+                $sh->ClosingTime=$request->closingtime;
                 $sh->save();
                 return redirect()->action('ShopController@index');
         
